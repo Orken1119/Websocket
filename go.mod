@@ -1,4 +1,4 @@
-module github.com/username/GitRepoName
+module github.com/Orken1119/Websocket
 
 go 1.20
 

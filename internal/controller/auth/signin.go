@@ -3,9 +3,9 @@ package auth
 import (
 	"net/http"
 
+	"github.com/Orken1119/Websocket/internal/controller/tokenutil"
+	"github.com/Orken1119/Websocket/internal/models"
 	"github.com/gin-gonic/gin"
-	"github.com/username/GitRepoName/internal/controller/tokenutil"
-	"github.com/username/GitRepoName/internal/models"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -61,7 +61,7 @@ func (lc *AuthController) Signin(c *gin.Context) {
 		})
 		return
 	}
-	accessToken, err := tokenutil.CreateAccessToken(&user, `access-key`, 50)//
+	accessToken, err := tokenutil.CreateAccessToken(&user, `access-key`, 50) //
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.ErrorResponse{
 			Result: []models.ErrorDetail{

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	models "github.com/username/GitRepoName/internal/models"
+	models "github.com/Orken1119/Websocket/internal/models"
 
 	"errors"
 	"strings"

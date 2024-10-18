@@ -2,16 +2,16 @@ package models
 
 type SuccessResponse struct {
 	Result   interface{} `json:"result"`
-	Metadata Properties `json:"metadata"`
+	Metadata Properties  `json:"metadata"`
 }
 
-type ErrorResponse struct{
+type ErrorResponse struct {
 	Result []ErrorDetail `json:"errors"`
 }
 
 type ErrorDetail struct {
-	Code string `json:"code"`
-	Message string `json:"message"`
+	Code     string     `json:"code"`
+	Message  string     `json:"message"`
 	Metadata Properties `json:"metadata"`
 }
 

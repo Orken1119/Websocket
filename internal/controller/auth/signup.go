@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"unicode"
 
+	"github.com/Orken1119/Websocket/internal/controller/tokenutil"
+	"github.com/Orken1119/Websocket/internal/models"
 	"github.com/gin-gonic/gin"
-	"github.com/username/GitRepoName/internal/controller/tokenutil"
-	"github.com/username/GitRepoName/internal/models"
 	"golang.org/x/crypto/bcrypt"
 )
 

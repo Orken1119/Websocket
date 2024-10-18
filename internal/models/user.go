@@ -12,9 +12,8 @@ type User struct {
 }
 
 type UserRequest struct {
-	Email       string `json:"email"`
-	Password    string `json:"password"`
-	PhoneNumber string `json:"phoneNumber"`
+	Email    string `json:"email"`
+	Password string `json:"password"`
 }
 
 type LoginRequest struct {
@@ -31,6 +30,5 @@ type UserRepository interface {
 	GetUserByEmail(c context.Context, email string) (User, error)
 	GetUserByID(c context.Context, userID int) (User, error)
 	GetProfile(c context.Context, userID int) (User, error)
-
 	CreateUser(c context.Context, user UserRequest) (int, error)
 }

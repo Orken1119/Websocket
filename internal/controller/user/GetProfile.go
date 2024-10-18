@@ -3,8 +3,8 @@ package user
 import (
 	"net/http"
 
+	"github.com/Orken1119/Websocket/internal/models"
 	"github.com/gin-gonic/gin"
-	"github.com/username/GitRepoName/internal/models"
 )
 
 type UserController struct {
