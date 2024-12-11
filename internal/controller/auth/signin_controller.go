@@ -19,6 +19,9 @@ func (lc *AuthController) Signin(c *gin.Context) {
 				{
 					Code:    "ERROR_BIND_JSON",
 					Message: "Datas dont match with struct of signin",
+					Metadata: models.Properties{
+						Properties1: err.Error(),
+					},
 				},
 			},
 		})
@@ -43,7 +46,10 @@ func (lc *AuthController) Signin(c *gin.Context) {
 			Result: []models.ErrorDetail{
 				{
 					Code:    "ERROR_GET_USER",
-					Message: "User with this email doesn't found",
+					Message: "User with this email wasn't found",
+					Metadata: models.Properties{
+						Properties1: err.Error(),
+					},
 				},
 			},
 		})
@@ -61,6 +67,7 @@ func (lc *AuthController) Signin(c *gin.Context) {
 		})
 		return
 	}
+
 	accessToken, err := tokenutil.CreateAccessToken(&user, `access-key`, 50) //
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.ErrorResponse{
@@ -68,10 +75,14 @@ func (lc *AuthController) Signin(c *gin.Context) {
 				{
 					Code:    "TOKEN_ERROR",
 					Message: "Error to create access token",
+					Metadata: models.Properties{
+						Properties1: err.Error(),
+					},
 				},
 			},
 		})
 		return
 	}
+
 	c.JSON(http.StatusOK, models.SuccessResponse{Result: accessToken})
 }

@@ -1,14 +1,14 @@
 package models
 
-import "context"
+import (
+	"context"
+	"errors"
+)
 
 type User struct {
-	ID          uint   `json:"id"`
-	Email       string `json:"email"`
-	Password    string `json:"password,omitempty"`
-	PhoneNumber string `json:"phoneNumber"`
-	RoleID      uint   `json:"roleId"`
-	CreatedAt   string `json:"createdAt"`
+	ID       uint   `json:"id"`
+	Email    string `json:"email"`
+	Password string `json:"password,omitempty"`
 }
 
 type UserRequest struct {
@@ -26,9 +26,13 @@ type Password struct {
 	ConfirmPassword string `json:"confirmPassword"`
 }
 
+var (
+	ErrPasswordFormat = errors.New("Password format isn't correct")
+)
+
 type UserRepository interface {
 	GetUserByEmail(c context.Context, email string) (User, error)
 	GetUserByID(c context.Context, userID int) (User, error)
-	GetProfile(c context.Context, userID int) (User, error)
 	CreateUser(c context.Context, user UserRequest) (int, error)
+	ValidatePassword(password string) error 
 }

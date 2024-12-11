@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/Orken1119/Websocket/internal/controller"
+	"github.com/Orken1119/Websocket/pkg"
 	"github.com/gin-gonic/gin"
-	"github.com/username/GitRepoName/internal/controller"
-	"github.com/username/GitRepoName/pkg"
 )
 
 func main() {
@@ -18,8 +18,8 @@ func main() {
 	defer app.CloseDBConnection()
 
 	ginRouter := gin.Default()
-	
+
 	controller.Setup(app, ginRouter)
 
-	ginRouter.Run(fmt.Sprintf(":%s", 1136))
+	ginRouter.Run(fmt.Sprintf(":%d", 1150))
 }

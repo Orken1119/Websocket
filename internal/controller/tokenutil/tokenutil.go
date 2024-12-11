@@ -17,7 +17,6 @@ func CreateAccessToken(user *models.User, secret string, expirationHour int) (ac
 	exp := time.Now().Add(time.Hour * time.Duration(expirationHour))
 	claims := &models.JwtClaims{
 		ID:     user.ID,
-		RoleID: user.RoleID,
 		RegisteredClaims: jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(exp),
 		},
@@ -66,11 +65,9 @@ func ValidateUserJWT(c *gin.Context, secret string) error {
 		return err
 	}
 	claims, ok := token.Claims.(jwt.MapClaims)
-	userRoleID := uint(claims["role"].(float64))
 	userID := uint(claims["id"].(float64))
 	if ok && token.Valid {
 		c.Set("userID", userID)
-		c.Set("roleID", userRoleID)
 		return nil
 	}
 	return errors.New("invalid curator token provided")
